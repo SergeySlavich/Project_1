@@ -5,11 +5,11 @@
 using namespace std;
 
 enum Direction {
-    Up = 72, Up1 = -106, Up2 = -26, Up3 = 119, Up4 = 87,
-    Left = 75, Left1 = -108, Left2 = -28, Left3 = 65, Left4 = 97,
-    Right = 77, Right1 = -126, Right2 = -94, Right3 = 68, Right4 = 100,
-    Down = 80, Down1 = -101, Down2 = -21, Down3 = 83, Down4 = 115,
-    Enter = 13, esc = 27, space = 32, tab = 9
+    Up = 72,    Up1 = -106,     Up2 = -26,      Up3 = 119,      Up4 = 87,
+    Left = 75,  Left1 = -108,   Left2 = -28,    Left3 = 65,     Left4 = 97,
+    Right = 77, Right1 = -126,  Right2 = -94,   Right3 = 68,    Right4 = 100, 
+    Down = 80,  Down1 = -101,   Down2 = -21,    Down3 = 83,     Down4 = 115, 
+    Enter = 13, esc = 27,       space = 32,     tab = 9
 };
 HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 const int SIZE_MAIN_MENU = 3;
@@ -25,6 +25,19 @@ string menu_characters[SIZE_MENU_CHARACTERS] = {
     "Купец",
     "Ремесленник"
 };
+const int SIZE_MAP = 10;
+int game_map[SIZE_MAP][SIZE_MAP] = {
+    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
+    {10, 11, 12, 13, 14, 15, 16, 17, 18, 19},
+    {20, 21, 22, 23, 24, 25, 26, 27, 28, 29},
+    {30, 31, 32, 33, 34, 35, 36, 37, 38, 39},
+    {40, 41, 42, 43, 44, 45, 46, 47, 48, 49},
+    {50, 51, 52, 53, 54, 55, 56, 57, 58, 59},
+    {60, 61, 62, 63, 64, 65, 66, 67, 68, 69},
+    {70, 71, 72, 73, 74, 75, 76, 77, 78, 79},
+    {80, 81, 82, 83, 84, 85, 86, 87, 88, 89},
+    {90, 91, 92, 93, 94, 95, 96, 97, 98, 99}
+};
 
 void SetCursor(int x, int y)
 {
@@ -38,6 +51,7 @@ void control();
 void staff();
 void start_game(int character);
 int run();
+void act1();
 
 void main()
 {
@@ -125,32 +139,29 @@ int run()
 {
     switch (_getch())
     {
-    case Up:    return 1; break;
-    case Down:  return 3; break;
-    case Right: return 2; break;
-    case Left:  return 4; break;
+    case Up:
+    case Up1:
+    case Up2:
+    case Up3:
+    case Up4:    return 1; break;
+    case Down:
+    case Down1:
+    case Down2:
+    case Down3:
+    case Down4:  return 3; break;
+    case Right:
+    case Right1:
+    case Right2:
+    case Right3:
+    case Right4: return 2; break;
+    case Left:
+    case Left1:
+    case Left2:
+    case Left3:
+    case Left4:  return 4; break;
     case space: return 5; break;
     case tab:   return 6; break;
     case Enter: return 7; break;
-    case 'W': return 1; break;
-    case 'S': return 3; break;
-    case 'D': return 2; break;
-    case 'A': return 4; break;
-    case 'w': return 1; break;
-    case 's': return 3; break;
-    case 'd': return 2; break;
-    case 'a': return 4; break;
-    case 'ц': return 1; break;
-    case 'ы': return 3; break;
-    case 'в': return 2; break;
-    case 'ф': return 4; break;
-    case 'Ц': return 1; break;
-    case 'Ы': return 3; break;
-    case 'В': return 2; break;
-    case 'Ф': return 4; break;
-
-
-
     }
 }
 
@@ -168,18 +179,38 @@ void start_game(int character)
     case 2: cout << "купца.\n";         break;
     case 3: cout << "ремесленника.\n";  break;
     }
-    cout << "\nНачните движение....\n";
+    cout << "\n\tНачните движение....\n";
     do
     {
         switch (run())
         {
-        case 1: cout << "Идем прямо.\n";                break;
-        case 2: cout << "Повернули направо.\n";         break;
-        case 3: cout << "Идем назад.\n";                break;
-        case 4: cout << "Повернули налево.\n";          break;
-        case 5: cout << "Прыгнули.\n";                  break;
-        case 6: cout << "Поменяли предмет в руках.\n";  break;
-        case 7: cout << "Выполнили действие.\n";        break;
+        case 1: act1();                break;
+        case 2: cout << "\tПовернули направо.\n";         break;
+        case 3: cout << "\tИдем назад.\n";                break;
+        case 4: cout << "\tПовернули налево.\n";          break;
+        case 5: cout << "\tПрыгнули.\n";                  break;
+        case 6: cout << "\tПоменяли предмет в руках.\n";  break;
+        case 7: cout << "\tВыполнили действие.\n";        break;
+        }
+    } while (esc);
+}
+
+void act1()
+{
+    system("cls");
+    cout << "\n\n\n\t\t\tИтак, первый шаг сделан, вокруг новый мир полный удивительных приключений!\n";
+    cout << "\t\t\"Вперед\" - сказал я себе и сделал новый шаг.\n";
+    do
+    {
+        switch (run())
+        {
+        case 1: cout << "\n\t\"Рубикон пройден!\" - сказал незнакомый голос.\n";                break;
+        case 2: cout << "\tОпомнись! Коня потеряешь!.\n";         break;
+        case 3: act1();                break;
+        case 4: cout << "\tНалево - сказку говорит.\n";          break;
+        case 5: cout << "\tПрыгнули.\n";                  break;
+        case 6: cout << "\tПоменяли предмет в руках.\n";  break;
+        case 7: cout << "\tВыполнили действие.\n";        break;
         }
     } while (esc);
 }
