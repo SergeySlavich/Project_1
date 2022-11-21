@@ -18,12 +18,13 @@ string main_menu[SIZE_MAIN_MENU] = {
     "Управление",
     "Участники проекта"
 };
-const int SIZE_MENU_CHARACTERS = 4;
+const int SIZE_MENU_CHARACTERS = 5;
 string menu_characters[SIZE_MENU_CHARACTERS] = {
-    "Крестьянин",
     "Рыцарь",
-    "Купец",
-    "Ремесленник"
+    "Знахарь (чумной доктор)",
+    "Фермер",
+    "Охотник", 
+    "Рудокоп (Гном)"
 };
 const int SIZE_MAP = 10;
 int game_map[SIZE_MAP][SIZE_MAP] = {
@@ -99,9 +100,9 @@ void new_game()
 {
     system("cls");
     setlocale(LC_ALL, "Russian");
-    int select = 0;
-    select = menu(menu_characters, SIZE_MENU_CHARACTERS);
-    start_game(select);
+    int character = 0;
+    character = menu(menu_characters, SIZE_MENU_CHARACTERS);
+    start_game(character);
 }
 
 void control()
@@ -174,17 +175,18 @@ void start_game(int character)
     cout << "\n\n\t\t\tДобро пожаловать в игру.\n Вы выбрали в качестве персонажа ";
     switch (character)
     {
-    case 0: cout << "крестьянина.\n";   break;
-    case 1: cout << "рыцаря.\n";        break;
-    case 2: cout << "купца.\n";         break;
-    case 3: cout << "ремесленника.\n";  break;
+    case 0: cout << "рыцаря.\n";   break;
+    case 1: cout << "знахаря.\n";        break;
+    case 2: cout << "фермера.\n";         break;
+    case 3: cout << "охотника.\n";  break;
+    case 4: cout << "рудокопа.\n"; break;
     }
     cout << "\n\tНачните движение....\n";
     do
     {
         switch (run())
         {
-        case 1: act1();                break;
+        case 1: act0_1(character);                break;
         case 2: cout << "\tПовернули направо.\n";         break;
         case 3: cout << "\tИдем назад.\n";                break;
         case 4: cout << "\tПовернули налево.\n";          break;
@@ -195,7 +197,7 @@ void start_game(int character)
     } while (esc);
 }
 
-void act1()
+void act0_1(int character)
 {
     system("cls");
     cout << "\n\n\n\t\t\tИтак, первый шаг сделан, вокруг новый мир полный удивительных приключений!\n";
@@ -206,7 +208,7 @@ void act1()
         {
         case 1: cout << "\n\t\"Рубикон пройден!\" - сказал незнакомый голос.\n";                break;
         case 2: cout << "\tОпомнись! Коня потеряешь!.\n";         break;
-        case 3: act1();                break;
+        case 3: cout << "Назад?!";                break;
         case 4: cout << "\tНалево - сказку говорит.\n";          break;
         case 5: cout << "\tПрыгнули.\n";                  break;
         case 6: cout << "\tПоменяли предмет в руках.\n";  break;
