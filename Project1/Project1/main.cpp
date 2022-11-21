@@ -12,11 +12,12 @@ enum Direction {
     Enter = 13, esc = 27,       space = 32,     tab = 9
 };
 HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
-const int SIZE_MAIN_MENU = 3;
+const int SIZE_MAIN_MENU = 4;
 string main_menu[SIZE_MAIN_MENU] = {
     "Новая игра",
     "Управление",
-    "Участники проекта"
+    "Участники проекта", 
+    " Доступ к мини-играм"
 };
 const int SIZE_MENU_CHARACTERS = 5;
 string menu_characters[SIZE_MENU_CHARACTERS] = {
@@ -52,7 +53,8 @@ void control();
 void staff();
 void start_game(int character);
 int run();
-void act1();
+void mini_games();
+void act0_1();
 
 void main()
 {
@@ -64,6 +66,7 @@ void main()
     case 0: new_game();
     case 1: control();
     case 2: staff();
+    case 3: mini_games();
     }
 }
 
@@ -127,7 +130,7 @@ void staff()
     cout << "\t\t\tПривет       " << endl;
     cout << "\t\t\tСергей       -       код игры (пока что)" << endl;
     cout << "\t\t\tХаос         " << endl;
-    cout << "\t\t\tКсения       " << endl;
+    cout << "\t\t\tКсения       - основной сюжет игры" << endl;
     cout << "\t\t\tЕлена        " << endl;
     cout << "\t\t\tКирилл       " << endl;
     cout << "\t\t\tИлья         " << endl;
@@ -195,6 +198,12 @@ void start_game(int character)
         case 7: cout << "\tВыполнили действие.\n";        break;
         }
     } while (esc);
+}
+
+void mini_games()
+{
+    cout << "В разработке";
+     if(_getch()) menu(main_menu, SIZE_MAIN_MENU);
 }
 
 void act0_1(int character)
