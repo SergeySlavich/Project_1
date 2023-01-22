@@ -1,0 +1,6 @@
+﻿  main.cpp
+D:\EDUCATION\Project_1\Project1\Project1\main.cpp(44,24): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+D:\EDUCATION\Project_1\Project1\Project1\main.cpp(44,27): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+D:\EDUCATION\Project_1\Project1\Project1\main.cpp(57,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+D:\EDUCATION\Project_1\Project1\Project1\main.cpp(166): warning C4715: 'run': not all control paths return a value
+  Project1.vcxproj -> D:\EDUCATION\Project_1\Project1\x64\Debug\Project1.exe
